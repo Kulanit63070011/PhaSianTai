@@ -11,7 +11,7 @@ services:
       context: ./whatShouldWeWear
       dockerfile: Dockerfile
     image: narumol01/my-frontend_image:1.0
-    ports: 
-      - '19006:8080'
+    ports:
+      - '19006:19006'
     volumes:
-      - .:/app
+      - ./whatShouldWeWear:/app
