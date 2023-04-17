@@ -23,10 +23,10 @@ const App = () => {
           name='test'
           component={TestSceen} /> */}
         <Stack.Screen
-          name="What_should_i_wear"
+          name="PhaSianTai"
           component={HomeScreen} />
         <Stack.Screen
-          name="selected1"
+          name="Day selection"
           component={Option1Screen} />
         <Stack.Screen
           name="Option2"
