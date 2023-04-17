@@ -3,9 +3,9 @@ version: '3'
 services:
   backend:
     build:
-      context: ./
+      context: .
       dockerfile: Dockerfile
-    image: narumol01/my-backend_image:1.0
+      image: narumol01/my-backend_image:1.0
   frontend:
     build:
       context: ./whatShouldWeWear
