@@ -3,7 +3,7 @@ version: '3'
 services:
   frontend:
     build:
-      context: ./whatShouldWeWear
+      context: .
       dockerfile: Dockerfile
 #     image: narumol01/my-frontend_image:1.0
     ports: 
