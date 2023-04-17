@@ -24,6 +24,11 @@ const HomeScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       <View style={styles.card}>
+        <Image
+          source={require('../component/pic.png')}
+          style={{ width: 250, height: 250 }}
+          resizeMode="cover"
+        />
         <CustomButton
           title="Get Started"
           onPress={goToOption1}
