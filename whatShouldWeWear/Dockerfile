@@ -13,8 +13,5 @@ RUN npm install -g npm@latest
 # Copy the entire Expo project to the working directory
 COPY . .
 
-# Expose the port that Expo uses (default is 19000)
-EXPOSE 19006
-
 # Start the Expo project
 CMD ["expo", "start", "--web"]
