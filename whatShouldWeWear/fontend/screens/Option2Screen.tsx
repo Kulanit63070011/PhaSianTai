@@ -35,6 +35,7 @@ const Option2Screen: React.FC = () => {
   return (
     <View style={styles.container}>
       <View style={styles.card}>
+      <Text style={[styles.text, {color:'black', paddingBottom: '20px', fontWeight:'bold'}]}>Please select an age range / ได้โปรดเลือกช่วงวัย</Text>
         <View style={[{ width: '1000' }]}>
           <CustomButton title="children" age="children" width='100px' backgroundColor="black" isSelected={selectedOptions[1] == "children"}  />
           <CustomButton title="teenage" age="teenage" width='100px' backgroundColor="black" isSelected={selectedOptions[1] == "teenage"}    />
