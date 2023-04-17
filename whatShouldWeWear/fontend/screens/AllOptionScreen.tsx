@@ -68,13 +68,16 @@ const AllOptionsScreen: React.FC = () => {
                 </Text>
                 {/* fcolor={colorDay[1].split(' ')[-1]} */}
                 <CustomButton title="Show Match Color" fcolor={fcolor} width='100px' backgroundColor="black" />
+                
                 {toggleShow && (
                     <View style={[styles.card2]}>
+                        <View style={styles.buttonRow}>
                         {colorM.map((option, index) => (
-                            <Text key={index} style={[{ color: 'black', fontWeight: 'bold'}]}>
+                            <Text key={index} style={[ styles.text2,{ color: 'black', fontWeight: 'bold'}]}>
                                 {option}
                             </Text>
                         ))}
+                        </View>
                     </View>
                 )}
 
@@ -135,7 +138,11 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginBottom: 10,
     },
-
+    buttonRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 10,
+    },
     button: {
         marginBottom: 5,
         borderRadius: 5,
@@ -148,6 +155,12 @@ const styles = StyleSheet.create({
         fontFamily: 'Kanit_400Regular',
         color: '#fff',
     },
+    text2:{
+        padding: 3,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 5
+    }
 });
 
 export default AllOptionsScreen;
