@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install -g npm@latest
 
 # Copy the entire Expo project to the working directory
 COPY . .
