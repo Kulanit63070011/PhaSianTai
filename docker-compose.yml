@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      image: Kulanit63070011/PhaSianTai/whatShouldWeWear_image:1.0
+    ports: 
+      - '8081:8080'
+    volumes:
+      - .:/app

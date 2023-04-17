@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+        environment {
+            DOCKER_CONTAINER_NAME_FRONTEND = "frontend_server"
+            DOCKER_IMAGE_NAME_FRONTEND     = "Kulanit63070011/PhaSianTai/whatShouldWeWear_image:1.0"
+        }
+
+
+        stages {
+            stage('Initialize Stage') {
+                steps {
+                    echo 'Initial : Delete containers and images'
+                    sh 'docker stop ${DOCKER_CONTAINER_NAME_FRONTEND} || true'
+                    sh 'docker rm ${DOCKER_CONTAINER_NAME_FRONTEND} || true'
+                    sh 'docker rmi ${DOCKER_IMAGE_NAME_FRONTEND} || true'
+                }
+            }
+
+            stage('Pull Stage') {
+                steps {
+                    dir('DevToolWeek9_10') {
+                        echo "Current path is ${pwd()}"
+                        sh "docker pull ${DOCKER_IMAGE_NAME_FRONTEND}"
+                    }
+                }
+            }
+
+            stage('Run Stage') {
+                steps {
+                    dir('DevToolWeek9_10') {
+                        echo "Current path is ${pwd()}"
+                        sh "docker run -d -p 8081:80 --name ${DOCKER_CONTAINER_NAME_FRONTEND} ${DOCKER_IMAGE_NAME_FRONTEND}"
+                    }
+                }
+            }
+        
+        }
+}
