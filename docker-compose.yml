@@ -5,7 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-#     image: narumol01/my-frontend_image:1.0
+      image: Kulanit63070011/PhaSianTai/whatShouldWeWear_image:1.0
     ports: 
       - '8081:8080'
-#     volumes:
+    volumes:
+      - .:/app
