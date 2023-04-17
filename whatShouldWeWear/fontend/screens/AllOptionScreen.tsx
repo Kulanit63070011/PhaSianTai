@@ -4,6 +4,8 @@ import { useRoute } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import axios from 'axios';
 import { Button } from '@ui-kitten/components';
+import { useFonts, Kanit_400Regular, Kanit_600SemiBold } from '@expo-google-fonts/kanit';
+
 interface RouteParams {
     selectedOptions: string[];
 }
@@ -26,6 +28,15 @@ const AllOptionsScreen: React.FC = () => {
     type Colorm = {
         colorm: string[];
     };
+
+    const [fontsLoaded] = useFonts({
+        Kanit_400Regular,
+        Kanit_600SemiBold,
+      });
+    
+      if (!fontsLoaded) {
+        return null;
+      }
 
     const CustomButton: React.FC<CustomButtonProps> = ({ title, fcolor, backgroundColor, width }) => {
         // console.log("fcolor == " + fcolor)
@@ -52,15 +63,15 @@ const AllOptionsScreen: React.FC = () => {
             <View style={styles.card}>
                 <Text style={styles.title}>สีเสื้อแนะนำสำหรับ {day} คือ </Text>
                 <Icon name="shirt" size={80} color={colorDay[1]} />
-                <Text>
+                <Text style={[{paddingBottom:'10px', fontWeight:'bold'}]}>
                     {selectedOptions[1][0]}
                 </Text>
                 {/* fcolor={colorDay[1].split(' ')[-1]} */}
                 <CustomButton title="Show Match Color" fcolor={fcolor} width='100px' backgroundColor="black" />
                 {toggleShow && (
-                    <View>
+                    <View style={[styles.card2]}>
                         {colorM.map((option, index) => (
-                            <Text key={index} style={[{ color: 'black' }]}>
+                            <Text key={index} style={[{ color: 'black', fontWeight: 'bold'}]}>
                                 {option}
                             </Text>
                         ))}
@@ -84,6 +95,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#ea1b15',
+        fontFamily: 'Kanit_400Regular'
     },
     card: {
         backgroundColor: 'white',
@@ -99,10 +111,25 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: '95%'
     },
+    card2: {
+        backgroundColor: '#1ecbe1',
+        borderRadius: 10,
+        padding: 20,
+        shadowColor: 'black',
+        shadowOpacity: 0.25,
+        shadowOffset: { width: 0, height: 2 },
+        shadowRadius: 10,
+        elevation: 5,
+        alignItems: 'center',
+        height: '200px',
+        justifyContent: 'center',
+        width: '95%'
+    },
     title: {
         fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 20,
+        fontFamily: 'Kanit_400Regular'
     },
     option: {
         fontSize: 16,
