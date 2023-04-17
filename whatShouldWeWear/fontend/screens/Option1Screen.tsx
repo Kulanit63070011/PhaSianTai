@@ -33,7 +33,7 @@ const Option1Screen: React.FC = () => {
         luckyColor: string[];
     };
 
-    const CustomButton: React.FC<CustomButtonProps> = ({ title, index, backgroundColor, width, isSelected }) => {
+    const CustomButton: React.FC<CustomButtonProps> = ({ title, index, backgroundColor, width, isSelected, }) => {
         return (
             <TouchableOpacity onPress={() => handleOptionPress(index)} style={[styles.button, { backgroundColor: isSelected ? '#999' : backgroundColor, width }]}>
                 <Text style={[styles.text, { color: isSelected ? '#fff' : 'white' }]}>{title}</Text>
@@ -78,7 +78,7 @@ const Option1Screen: React.FC = () => {
     return (
         <View style={[styles.container, { backgroundColor: '#ea1b15' }]}>
             <View style={styles.card}>
-
+                <Text style={[styles.text, {color:'black'}]}>กรุณาเลือกวัน</Text>
                 <View style={styles.buttonRow}>
                     <CustomButton width='100px' title="Monday" index='0' backgroundColor="black" isSelected={day.includes('Monday')} />
                     <CustomButton width='100px' title="Tuesday" index='1' backgroundColor="black" isSelected={day.includes('Tuesday')} />
@@ -94,7 +94,7 @@ const Option1Screen: React.FC = () => {
                 </View>
                 <View style={[{alignItems: 'center'}]}>
                     <TouchableOpacity onPress={goToOption2} style={[styles.button, { backgroundColor: 'blue'}]}>
-                        <Text style={styles.text}>Go to Option2</Text>
+                        <Text style={styles.text}>ตกลง</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#ea1b15',
+        fontFamily: 'Kanit_400Regular'
       },
       card: {
         backgroundColor: 'white',
