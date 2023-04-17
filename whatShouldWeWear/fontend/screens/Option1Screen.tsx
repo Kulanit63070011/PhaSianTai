@@ -78,7 +78,7 @@ const Option1Screen: React.FC = () => {
     return (
         <View style={[styles.container, { backgroundColor: '#ea1b15' }]}>
             <View style={styles.card}>
-
+            <Text style={[styles.text, {color:'black', paddingBottom: '20px', fontWeight:'bold'}]}>Please select a day / ได้โปรดเลือกวัน</Text>
                 <View style={styles.buttonRow}>
                     <CustomButton width='100px' title="Monday" index='0' backgroundColor="black" isSelected={day.includes('Monday')} />
                     <CustomButton width='100px' title="Tuesday" index='1' backgroundColor="black" isSelected={day.includes('Tuesday')} />
