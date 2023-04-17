@@ -5,7 +5,7 @@ import { useFonts, Kanit_400Regular, Kanit_600SemiBold } from '@expo-google-font
 
 const HomeScreen: React.FC = () => {
   const navigation = useNavigation();
-  const goToOption1 = () => navigation.navigate('selected1');
+  const goToOption1 = () => navigation.navigate('Day selection');
   const [fontsLoaded] = useFonts({
     Kanit_400Regular,
     Kanit_600SemiBold,
@@ -24,13 +24,12 @@ const HomeScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       <View style={styles.card}>
-        <Image
-          source={require('../component/pic.png')}
-          style={{ width: 250, height: 250 }}
-          resizeMode="cover"
-        />
+      <Image
+        source={require('../component//picture.png')}
+        style={{ width: '300px', height: '250px' }}
+      />
         <CustomButton
-          title="Get Started"
+          title="เริ่มต้น"
           onPress={goToOption1}
           buttonStyle={styles.button}
           textStyle={styles.buttonText}
