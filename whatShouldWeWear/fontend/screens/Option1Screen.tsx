@@ -42,7 +42,7 @@ const Option1Screen: React.FC = () => {
     };
 
     const goToOption2 = () => {
-        if(day != ''){
+        if(day != '' && selectedOptions[0] != ''){
             navigation.navigate('Option2', { selectedOptions });
         }
         }
