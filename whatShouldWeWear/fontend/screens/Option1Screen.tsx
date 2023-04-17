@@ -143,4 +143,3 @@ const styles = StyleSheet.create({
 });
 
 export default Option1Screen;
-
