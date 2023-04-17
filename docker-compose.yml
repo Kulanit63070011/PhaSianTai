@@ -5,12 +5,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      image: narumol01/my-backend_image:1.0
+    image: narumol01/my-backend_image:1.0
   frontend:
     build:
       context: ./whatShouldWeWear
       dockerfile: Dockerfile
-      image: narumol01/my-frontend_image:1.0
+    image: narumol01/my-frontend_image:1.0
     ports: 
       - '19006:8080'
     volumes:
