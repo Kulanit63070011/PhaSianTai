@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+        
+        stages {
+            stage('Initialize Stage') {
+                steps {
+                    echo 'Initial : Delete containers and images'
+                     dir('DevToolWeek9_10') {
+                        echo "Current path is  ${pwd()}"
+                        sh 'docker-compose down --rmi all --volumes || true'
+                     }
+                }
+            }
+
+            stage('Build Stage'){
+                steps {
+                    dir('DevToolWeek9_10') {
+                        echo "Current path is ${pwd()}"
+                        sh "docker-compose build"
+                    }
+                }
+            }
+
+            stage('Push Stage'){
+                steps {
+                    dir('DevToolWeek9_10') {
+                        withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                            sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+                        }
+                        sh 'docker push narumol01/my-backend_image:1.0'
+                        sh 'docker push narumol01/my-frontend_image:1.0'
+                    }
+                }
+            }
+            
+            stage('Tigger to slave job'){
+                steps {
+                    build job: 'Slave'
+                }
+            }
+        }
+}
