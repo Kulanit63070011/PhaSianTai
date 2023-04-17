@@ -1,12 +1,17 @@
 version: '3'
 
 services:
-  frontend:
+  backend:
     build:
       context: .
       dockerfile: Dockerfile
-      image: Kulanit63070011/PhaSianTai/whatShouldWeWear_image:1.0
+    image: narumol01/my-backend_image:1.0
+  frontend:
+    build:
+      context: ./whatShouldWeWear
+      dockerfile: Dockerfile
+      image: narumol01/PhaSianTai/whatShouldWeWear_image:1.0
     ports: 
-      - '8081:8080'
+      - '19006:8080'
     volumes:
       - .:/app
