@@ -2,9 +2,7 @@ pipeline {
     agent any
         environment {
             DOCKER_CONTAINER_NAME_FRONTEND = "frontend_server"
-            DOCKER_CONTAINER_NAME_BACKEND = "backend_server"
-            DOCKER_IMAGE_NAME_FRONTEND     = "narumol01/my-frontend_image:1.0"
-            DOCKER_IMAGE_NAME_BACKEND     = "narumol01/my-backend_image:1.0"
+            DOCKER_IMAGE_NAME_FRONTEND     = "Kulanit63070011/PhaSianTai/whatShouldWeWear_image:1.0"
         }
 
 
@@ -13,11 +11,8 @@ pipeline {
                 steps {
                     echo 'Initial : Delete containers and images'
                     sh 'docker stop ${DOCKER_CONTAINER_NAME_FRONTEND} || true'
-                    sh 'docker stop ${DOCKER_CONTAINER_NAME_BACKEND} || true'
                     sh 'docker rm ${DOCKER_CONTAINER_NAME_FRONTEND} || true'
-                    sh 'docker rm ${DOCKER_CONTAINER_NAME_BACKEND} || true'
                     sh 'docker rmi ${DOCKER_IMAGE_NAME_FRONTEND} || true'
-                    sh 'docker rmi ${DOCKER_IMAGE_NAME_BACKEND} || true'
                 }
             }
 
@@ -25,7 +20,6 @@ pipeline {
                 steps {
                     dir('DevToolWeek9_10') {
                         echo "Current path is ${pwd()}"
-                        sh "docker pull ${DOCKER_IMAGE_NAME_BACKEND}"
                         sh "docker pull ${DOCKER_IMAGE_NAME_FRONTEND}"
                     }
                 }
@@ -35,8 +29,7 @@ pipeline {
                 steps {
                     dir('DevToolWeek9_10') {
                         echo "Current path is ${pwd()}"
-                        sh "docker run -d -p 8088:80 --name ${DOCKER_CONTAINER_NAME_BACKEND}  ${DOCKER_IMAGE_NAME_BACKEND}"
-                        sh "docker run -d -p 8089:80 --name ${DOCKER_CONTAINER_NAME_FRONTEND} ${DOCKER_IMAGE_NAME_FRONTEND}"
+                        sh "docker run -d -p 8081:80 --name ${DOCKER_CONTAINER_NAME_FRONTEND} ${DOCKER_IMAGE_NAME_FRONTEND}"
                     }
                 }
             }
