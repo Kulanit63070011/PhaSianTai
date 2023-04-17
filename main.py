@@ -155,7 +155,10 @@ async def root():
 
 @app.get("/colormatch/{color}")
 async def get_colormatch(color:str):
-    return color_match[color]
+    if(color in color_match[0]):
+        return color_match[0][color]
+    else:
+        return []
 
 @app.get("/colorDay/")
 async def get_colorDays():

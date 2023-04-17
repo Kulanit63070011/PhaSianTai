@@ -1,33 +1,46 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import axios from 'axios';
+import { Button } from '@ui-kitten/components';
 interface RouteParams {
     selectedOptions: string[];
 }
-
+interface CustomButtonProps {
+    title: string;
+    fcolor: string;
+    backgroundColor: string;
+    width: string;
+}
 const AllOptionsScreen: React.FC = () => {
     const route = useRoute();
     const { selectedOptions } = route.params as RouteParams;
     const day = selectedOptions[0]
     const colorDay = selectedOptions[1]
-
+    const [toggleShow, setToggleShow] = useState(false)
+    const [colorM, setColorM] = useState<string[]>([]);
+    const fcolor = colorDay[0].split(' ')[colorDay[0].split(' ').length - 1]
+    console.log(typeof (fcolor))
+    console.log(fcolor)
     type Colorm = {
-        day: string;
-        badLuckColor: string[];
-        luckyColor: string[];
+        colorm: string[];
+    };
+
+    const CustomButton: React.FC<CustomButtonProps> = ({ title, fcolor, backgroundColor, width }) => {
+        // console.log("fcolor == " + fcolor)
+        return (
+            <TouchableOpacity onPress={() => fetchData(fcolor)} style={[styles.button, { backgroundColor: toggleShow ? '#999' : backgroundColor, width: 300 }]}>
+                <Text style={[styles.text, { color: toggleShow ? '#fff' : 'white' }]}>{title}</Text>
+            </TouchableOpacity>
+        );
     };
     const fetchData = (color: string) => {
-        axios.get<Colorm>('http://127.0.0.1:8000/colormatch/'+ color)
+        setToggleShow(!toggleShow)
+        axios.get<Colorm>('http://127.0.0.1:8000/colormatch/' + color)
             .then(response => {
-                setDay(response.data.day);
-                const luckyColorList = response.data.luckyColor;
-                console.log("-- " +luckyColorList+ " --")
-                const rdColor = luckyColorList[Math.floor(Math.random() * luckyColorList.length)]
-                setRandomColor(rdColor);
-                console.log("++ " +rdColor+ " ++")
-                console.log(day)
+                setColorM(response.data)
+                console.log(response.data + "daa" + colorM)
             })
             .catch(error => {
                 // Handle error
@@ -42,6 +55,18 @@ const AllOptionsScreen: React.FC = () => {
                 <Text>
                     {selectedOptions[1][0]}
                 </Text>
+                {/* fcolor={colorDay[1].split(' ')[-1]} */}
+                <CustomButton title="Show Match Color" fcolor={fcolor} width='100px' backgroundColor="black" />
+                {toggleShow && (
+                    <View>
+                        {colorM.map((option, index) => (
+                            <Text key={index} style={[{ color: 'black' }]}>
+                                {option}
+                            </Text>
+                        ))}
+                    </View>
+                )}
+
                 {/* {selectedOptions.map((option, index) => (
                     <Text key={index} style={[{ color: 'black' }]}>
                         {option}
@@ -82,6 +107,19 @@ const styles = StyleSheet.create({
     option: {
         fontSize: 16,
         marginBottom: 10,
+    },
+
+    button: {
+        marginBottom: 5,
+        borderRadius: 5,
+        padding: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    text: {
+        fontSize: 16,
+        fontFamily: 'Kanit_400Regular',
+        color: '#fff',
     },
 });
 
