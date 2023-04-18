@@ -1,17 +1,15 @@
-# Use the official Node.js base image
-FROM node:14
+FROM node:14 
 
-# Set the working directory
+# Set the working directory to the root of the project
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+# Copy the package.json and yarn.lock (or package-lock.json) files to the container
+COPY package.json yarn.lock* ./
 
 # Install dependencies
-RUN npm install -g npm@latest
+RUN yarn install
 
-# Copy the entire Expo project to the working directory
+# Copy the rest of the project files to the container
 COPY . .
-
 # Start the Expo project
 CMD ["expo", "start", "--web"]
