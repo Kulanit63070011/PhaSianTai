@@ -35,8 +35,8 @@ pipeline {
                 steps {
                     dir('PhaSianTai') {
                         echo "Current path is ${pwd()}"
-                         sh "docker run -d -p 8000:80 --name ${DOCKER_CONTAINER_NAME_BACKEND}  ${DOCKER_IMAGE_NAME_BACKEND}"
-                        sh "docker run -d -p 19006:80 --name ${DOCKER_CONTAINER_NAME_FRONTEND} ${DOCKER_IMAGE_NAME_FRONTEND}"
+                        sh "docker run -d -p 8000:80 --name ${DOCKER_CONTAINER_NAME_BACKEND}  ${DOCKER_IMAGE_NAME_BACKEND}"
+                        sh "docker run -d -p 19006:19006 --name ${DOCKER_CONTAINER_NAME_FRONTEND} ${DOCKER_IMAGE_NAME_FRONTEND}"
                     }
                 }
             }
