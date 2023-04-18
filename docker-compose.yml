@@ -13,5 +13,4 @@ services:
     image: narumol01/my-frontend_image:1.0
     ports:
       - '19006:80'
-    volumes:
-      - ./whatShouldWeWear:/app
+    
