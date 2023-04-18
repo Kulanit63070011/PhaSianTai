@@ -1,15 +1,23 @@
-FROM node:14 
+# Base image
+FROM node:14
 
-# Set the working directory to the root of the project
+# Set working directory
 WORKDIR /app
 
-# Copy the package.json and yarn.lock (or package-lock.json) files to the container
-COPY package.json yarn.lock* ./
+# Install Expo CLI
+RUN npm install -g expo-cli
+
+# Copy package.json and package-lock.json to work directory
+COPY package*.json ./
 
 # Install dependencies
-RUN yarn install
+RUN npm install
 
-# Copy the rest of the project files to the container
+# Copy the entire project directory to work directory
 COPY . .
-# Start the Expo project
-CMD ["expo", "start", "--web"]
+
+# Expose the default port for Expo web (19006)
+EXPOSE 19006
+
+# Start the Expo web server
+CMD ["expo", "start",  "--web"]
