@@ -17,7 +17,7 @@ RUN yarn install
 COPY . .
 
 # Expose the default port for Expo web (19006)
-EXPOSE 19006
+# EXPOSE 19006
 
 # Start the Expo web server
 CMD ["expo", "start",  "--web"]
