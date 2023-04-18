@@ -5,13 +5,13 @@ FROM node:14
 WORKDIR /app
 
 # Install Expo CLI
-RUN yarn add -g expo-cli
+RUN yarn global add expo-cli
 
-# Copy package.json and package-lock.json to work directory
-COPY package*.json ./
+# Copy package.json and yarn.lock to work directory
+COPY package*.json yarn.lock ./
 
 # Install dependencies
-RUN yarn
+RUN yarn install
 
 # Copy the entire project directory to work directory
 COPY . .
