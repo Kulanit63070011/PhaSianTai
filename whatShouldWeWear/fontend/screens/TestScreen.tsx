@@ -15,7 +15,7 @@ const TestSceen = () => {
   const [randomColor, setRandomColor] = useState('')
 
   const select = (index: string) => {
-    axios.get<Day>('http://127.0.0.1:8000/colorDay/' + index)
+    axios.get<Day>('http://13.251.60.170:8000/colorDay/' + index)
       .then(response => {
         // Handle successful response
         setDay(response.data.day)
