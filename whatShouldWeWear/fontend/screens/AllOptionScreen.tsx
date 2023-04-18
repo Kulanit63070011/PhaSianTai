@@ -48,7 +48,7 @@ const AllOptionsScreen: React.FC = () => {
     };
     const fetchData = (color: string) => {
         setToggleShow(!toggleShow)
-        axios.get<Colorm>('http://127.0.0.1:8000/colormatch/' + color)
+        axios.get<Colorm>('http://13.251.60.170:8000/colormatch/' + color)
             .then(response => {
                 setColorM(response.data)
                 console.log(response.data + "daa" + colorM)
